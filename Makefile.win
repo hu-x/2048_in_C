@@ -1,0 +1,37 @@
+# Project: 2048
+# Makefile created by Dev-C++ 5.11
+
+CPP      = g++.exe
+CC       = gcc.exe
+WINDRES  = windres.exe
+OBJ      = keyboard.o main.o 2048.o screen.o
+LINKOBJ  = keyboard.o main.o 2048.o screen.o
+LIBS     = -L"E:/Programing Software/Dev-Cpp/MinGW64/lib32" -L"E:/Programing Software/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib32" -static-libgcc -m32
+INCS     = -I"E:/Programing Software/Dev-Cpp/MinGW64/include" -I"E:/Programing Software/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"E:/Programing Software/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
+CXXINCS  = -I"E:/Programing Software/Dev-Cpp/MinGW64/include" -I"E:/Programing Software/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"E:/Programing Software/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"E:/Programing Software/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
+BIN      = 2048.exe
+CXXFLAGS = $(CXXINCS) -m32
+CFLAGS   = $(INCS) -m32
+RM       = rm.exe -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CC) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+keyboard.o: keyboard.c
+	$(CC) -c keyboard.c -o keyboard.o $(CFLAGS)
+
+main.o: main.c
+	$(CC) -c main.c -o main.o $(CFLAGS)
+
+2048.o: 2048.c
+	$(CC) -c 2048.c -o 2048.o $(CFLAGS)
+
+screen.o: screen.c
+	$(CC) -c screen.c -o screen.o $(CFLAGS)
